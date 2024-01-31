@@ -3,9 +3,13 @@ import Image from 'next/image';
 import { InputNumber, Flex, Button, Select } from 'antd';
 import { SwapOutlined } from '@ant-design/icons';
 
+import { getQuotes } from '@/services/quotes';
+
 import styles from '@/styles/currencyExchange.module.css';
 
-export default function Home() {
+export default async function Home() {
+  const quotes = await getQuotes();
+
   return (
     <main>
       <Image src="/static/background.jpg" fill alt="currencies" className={styles.backgroundImage} />
@@ -38,14 +42,9 @@ export default function Home() {
               <Select
                 size="large"
                 id="fromCurrency"
-                defaultValue="lucy"
+                placeholder="Currency"
                 style={{ width: 250, marginTop: 9 }}
-                options={[
-                  { value: 'jack', label: 'Jack' },
-                  { value: 'lucy', label: 'Lucy' },
-                  { value: 'Yiminghe', label: 'yiminghe' },
-                  { value: 'disabled', label: 'Disabled', disabled: true },
-                ]}
+                options={quotes}
               />
             </Flex>
 
@@ -60,14 +59,9 @@ export default function Home() {
               <Select
                 size="large"
                 id="toCurrency"
-                defaultValue="lucy"
+                placeholder="Currency"
                 style={{ width: 250, marginTop: 9 }}
-                options={[
-                  { value: 'jack', label: 'Jack' },
-                  { value: 'lucy', label: 'Lucy' },
-                  { value: 'Yiminghe', label: 'yiminghe' },
-                  { value: 'disabled', label: 'Disabled', disabled: true },
-                ]}
+                options={quotes}
               />
             </Flex>
           </Flex>
