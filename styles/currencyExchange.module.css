@@ -1,0 +1,78 @@
+.backgroundImage {
+  -webkit-filter: blur(2.5px);
+  filter: blur(2.5px);
+  background-size: cover;
+}
+
+.currencyExchange {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* lg */
+  height: 100vh;
+}
+
+.container {
+  background-color: rgb(49 65 52 / 65%);
+
+  height: 100vh;
+  width: 100%;
+
+  background-clip: padding-box;
+  backdrop-filter: blur(4px);
+
+  padding: 3em 5em;
+}
+
+.heading {
+  font-weight: 700;
+  font-size: 3em;
+  text-align: center;
+}
+
+.formWrapper {
+  margin: 64px 0 42px 0;
+}
+
+.formLabel {
+  font-size: 1.25em;
+  line-height: 1.75em;
+}
+
+.swapButton button {
+  border-color: rgb(64 138 108) !important;
+}
+
+.resetButton button {
+  width: 150px;
+  height: 40px;
+  border-radius: 4px;
+  border-color: rgb(64 138 108);
+  background-color: rgb(64 138 108);
+  color: #fff;
+}
+
+.resetButton button span {
+  font-size: 1em;
+  line-height: 1.5em;
+  font-weight: 700;
+}
+
+.result {
+  margin-top: 2em;
+
+  font-size: 1.5em;
+  line-height: 2em;
+  font-weight: 700;
+}
+
+@media only screen and (min-width: 1024px) {
+  .container {
+    height: 65%;
+    width: 70%;
+    border-radius: 6px;
+  }
+}
