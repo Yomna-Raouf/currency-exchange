@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={IBMPlexSans.className}>
+      <body suppressHydrationWarning={true} className={IBMPlexSans.className}>
         <AntdRegistry>{children}</AntdRegistry>
       </body>
     </html>

@@ -1,7 +1,8 @@
-type Quotes = string[];
-type FormatedQuotes = { label: string; value: string }[];
+import type { FormatedQuote } from '@/types';
 
-export const getQuotes = async (): Promise<FormatedQuotes> => {
+type Quotes = string[];
+
+export const getQuotes = async (): Promise<FormatedQuote[]> => {
   const res = await fetch(`https://${process.env.API_HOST}/listquotes`, {
     method: 'GET',
     headers: {
@@ -13,9 +14,10 @@ export const getQuotes = async (): Promise<FormatedQuotes> => {
 
   const quotes: Quotes = await res.json();
 
-  const formttedQuotes = quotes.map((quote) => ({
+  const formttedQuotes: FormatedQuote[] = quotes.map((quote) => ({
     value: quote,
     label: quote,
+    disabled: false
   }));
 
   return formttedQuotes;
