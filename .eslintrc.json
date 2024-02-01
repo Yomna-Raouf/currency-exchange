@@ -9,6 +9,7 @@
     ".eslintrc.json",
     "commitlint.config.js",
     "commitlint.config.cjs",
+    "postcss.config.js",
     "*.css",
     "tests/*",
     "automation/*"
