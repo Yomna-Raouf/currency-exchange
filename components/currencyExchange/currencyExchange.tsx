@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
 
 import { Input, Button, Select, Form } from 'antd';
@@ -9,7 +9,7 @@ import debounce from 'lodash.debounce';
 
 import { getFormData } from '@/utils/getFormData';
 
-import type { FormatedQuote } from '@/types';
+import type { FormFields, FormatedQuote } from '@/types';
 
 import { exchangeCurrency } from '@/app/actions';
 
@@ -22,30 +22,46 @@ const initialState = {
 
 const CurrencyExchange = ({ quotes }: { quotes: FormatedQuote[] }) => {
 
+    const [form] = Form.useForm();
     const [state, formAction] = useFormState(exchangeCurrency, initialState);
 
-    const [form] = Form.useForm();
+    const [result, setResult] = useState<string>(state.result);
+    const [ showResetButton, setShowResetButton ] = useState<boolean>(false);
 
-    const [showResetButton, setShowResetButton] = useState<boolean>(false);
+    const debounceExchangedAmount = (allValues: FormFields) => debounce(
+        () => {
+            const formData: FormData = getFormData(allValues);
+            formAction(formData); 
+        },
+        2000
+    );
 
-    const onValuesChange = async (_: any , allValues: {amount: string, fromCurrency: string, toCurrency: string}) => {
-        const getExchangedAmount = debounce(
-            () => {
-                const formData: FormData = getFormData(allValues);
-                formAction(formData); 
-            },
-            2000
-        );
-
+    const onValuesChange = async () => {
         setTimeout(() => {
             form
             .validateFields()
-            .then(() => {
+            .then((values: FormFields): void => {
+                setResult('');
                 setShowResetButton(true);
-                getExchangedAmount();
+                debounceExchangedAmount(values)();
             })
         });
     }
+
+    useEffect(() => {
+        setResult(state?.result);
+    }, [state]);
+
+    const onSwapCurrencies = async () => {
+        const fromCurrencyFieldVal = form.getFieldValue('fromCurrency');
+        const toCurrencyFieldVal = form.getFieldValue('toCurrency');
+        const temp = fromCurrencyFieldVal;
+
+        form.setFieldsValue({ fromCurrency: toCurrencyFieldVal }); 
+        form.setFieldsValue({ toCurrency: temp }); 
+
+        onValuesChange();
+    } 
 
   return (
     <div className={styles.formWrapper} >
@@ -63,7 +79,8 @@ const CurrencyExchange = ({ quotes }: { quotes: FormatedQuote[] }) => {
                         message: "Please enter a positive number",
                         transform(value) {
                             return Number(value)
-                    }}
+                        }
+                    }
                 ]}
             >
                 <Input
@@ -93,7 +110,14 @@ const CurrencyExchange = ({ quotes }: { quotes: FormatedQuote[] }) => {
 
 
             <div className={styles.swapButton}>
-                <Button size="large" ghost type="default" shape="circle" icon={<SwapOutlined />} />
+                <Button 
+                    size="large" 
+                    ghost 
+                    type="default" 
+                    shape="circle" 
+                    icon={<SwapOutlined />} 
+                    onClick={onSwapCurrencies}
+                />
             </div>
 
             <Form.Item<string>
@@ -114,13 +138,16 @@ const CurrencyExchange = ({ quotes }: { quotes: FormatedQuote[] }) => {
 
         {showResetButton &&
             <div className={styles.resetButton}>
-                <Button onClick={() => {form.resetFields();}} type="default" size="large">
+                <Button onClick={() => {
+                    form.resetFields();
+                    setResult('');
+                }} type="default" size="large">
                     <span>Reset</span>
                 </Button>
             </div>
         }
         
-        { state && <p aria-live="polite" role="result" className={styles.result}> {state?.result} </p> }
+        { result && <p aria-live="polite" role="result" className={styles.result}> {result} </p> }
     </div>
   )
 }

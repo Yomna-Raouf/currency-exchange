@@ -2,9 +2,9 @@
 
 import { getExchangedCurrency } from '@/services/exchange';
 
-export async function exchangeCurrency(prevState: {
-    result: string  },
-  formData: FormData,
+export async function exchangeCurrency(
+    _: any,
+    formData: FormData,
 ) {
 
     const amount = formData.get('amount');

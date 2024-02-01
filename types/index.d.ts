@@ -3,3 +3,9 @@ export interface FormatedQuote {
   value: string;
   disabled: boolean;
 };
+
+export type FormFields = {
+  amount: string; 
+  fromCurrency: string;
+  toCurrency: string;
+}
