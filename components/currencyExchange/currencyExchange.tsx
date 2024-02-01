@@ -3,8 +3,11 @@
 import { useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
 
-import { Input, Button, Select, Form } from 'antd';
-import { SwapOutlined } from '@ant-design/icons';
+import Input from 'antd/lib/input';
+import Button from 'antd/lib/button';
+import Select from 'antd/lib/select';
+import Form from 'antd/lib/form';
+import SwapOutlined from '@ant-design/icons/SwapOutlined';
 import debounce from 'lodash.debounce';
 
 import { getFormData } from '@/utils/getFormData';

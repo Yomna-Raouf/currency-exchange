@@ -2,8 +2,9 @@ import Image from 'next/image';
 
 import { getQuotes } from '@/services/quotes';
 
-import styles from '@/styles/home.module.css';
 import CurrencyExchange from '@/components/currencyExchange/currencyExchange';
+
+import styles from '@/styles/home.module.css';
 
 export default async function Home() {
   const quotes = await getQuotes();
