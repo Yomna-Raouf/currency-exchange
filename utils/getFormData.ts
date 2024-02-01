@@ -1,10 +1,9 @@
+export const getFormData = (payloadObj: { [s: string]: string } | ArrayLike<string>): FormData => {
+  const formData = new FormData();
+  Object.entries(payloadObj).forEach((entry: [string, string]) => {
+    const [key, value] = entry;
+    formData.append(key, value);
+  });
 
-export const getFormData = (payloadObj: { [s: string]: unknown; } | ArrayLike<unknown>) :FormData => {
-    const formData = new FormData();
-    Object.entries(payloadObj).forEach((entry:  [string, any]) => {
-        const [key, value] = entry;
-        formData.append(key, value);
-    })
-
-    return formData;
+  return formData;
 };

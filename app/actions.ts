@@ -1,22 +1,17 @@
-"use server";
+'use server';
 
 import { getExchangedCurrency } from '@/services/exchange';
 
-export async function exchangeCurrency(
-    _: any,
-    formData: FormData,
-) {
+export async function exchangeCurrency(_: unknown, formData: FormData) {
+  const amount = formData.get('amount');
+  const fromCurrency = formData.get('fromCurrency');
+  const toCurrency = formData.get('toCurrency');
 
-    const amount = formData.get('amount');
-    const fromCurrency = formData.get('fromCurrency');
-    const toCurrency = formData.get('toCurrency');
+  try {
+    const exchangeResult = await getExchangedCurrency(amount, fromCurrency, toCurrency);
 
-    try {
-        const exchangeResult = await getExchangedCurrency(amount, fromCurrency, toCurrency);
-
-        return { result: `${amount} ${fromCurrency} EQUALS ${exchangeResult} ${toCurrency}` };
-    } catch (e) {
-        return { result: "Oooops! Failed to Calculate exchnge rate" };
-    }
-
+    return { result: `${amount} ${fromCurrency} EQUALS ${exchangeResult} ${toCurrency}` };
+  } catch (e) {
+    return { result: 'Oooops! Failed to Calculate exchnge rate' };
+  }
 }
