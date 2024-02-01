@@ -1,5 +1,4 @@
 .backgroundImage {
-  -webkit-filter: blur(2.5px);
   filter: blur(2.5px);
   background-size: cover;
 }
@@ -10,33 +9,39 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* lg */
-  height: 100vh;
 }
 
 .container {
   background-color: rgb(49 65 52 / 65%);
 
   height: 100vh;
-  width: 100%;
 
   background-clip: padding-box;
   backdrop-filter: blur(4px);
 
-  padding: 3em 5em;
+  padding: 1.5em;
 }
 
 .heading {
   font-weight: 700;
   font-size: 3em;
   text-align: center;
+  margin: 0.25em;
 }
 
 @media only screen and (min-width: 1024px) {
+  .currencyExchange {
+    height: 100vh;
+  }
+
   .container {
     height: 60%;
     width: 65%;
     border-radius: 6px;
+    padding: 3em 5em;
+  }
+
+  .heading {
+    margin: revert;
   }
 }

@@ -8,13 +8,18 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 64, 138, 108,.5;
+    --background-start-rgb: 64, 138, 108, 0.5;
     --background-end-rgb: 64, 138, 108;
   }
 }
 
 body {
+  overflow: hidden;
   margin: 0;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+html {
+  overflow: hidden;
 }

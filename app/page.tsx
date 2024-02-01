@@ -9,13 +9,13 @@ export default async function Home() {
   const quotes = await getQuotes();
 
   return (
-    <main style={{ position: 'relative' }} >
-      <Image src="/static/background.jpg" fill alt="currencies" className={styles.backgroundImage}  />
+    <main style={{ position: 'relative' }}>
+      <Image src="/static/background.jpg" fill alt="currencies" className={styles.backgroundImage} />
 
       <section className={styles.currencyExchange}>
         <div className={styles.container}>
           <h1 className={styles.heading}> Money Exchange </h1>
-            <CurrencyExchange quotes={quotes} />          
+          <CurrencyExchange quotes={quotes} />
         </div>
       </section>
     </main>

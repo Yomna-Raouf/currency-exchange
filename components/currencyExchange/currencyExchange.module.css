@@ -1,44 +1,56 @@
 .formWrapper form {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    margin: 64px 0 42px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin: 42px 0 36px 0;
 }
 
 .formLabel {
-    font-size: 1.25em;
-    line-height: 1.75em;
-    color: #fff;
+  font-size: 1.25em;
+  line-height: 1.75em;
+  color: #fff;
 }
 
 .swapButton {
-    height: 60px;
+  height: 60px;
 }
 
 .swapButton button {
-    border-color: rgb(var(--primary)) !important;
+  border-color: rgb(var(--primary)) !important;
 }
 
 .resetButton button {
-    width: 150px;
-    height: 40px;
-    border-radius: 4px;
-    border-color: rgb(var(--primary));
-    background-color: rgb(var(--primary));
-    color: #fff;
+  width: 150px;
+  height: 40px;
+  border-radius: 4px;
+  border-color: rgb(var(--primary));
+  background-color: rgb(var(--primary));
+  color: #fff;
 }
 
 .resetButton button span {
-    font-size: 1em;
-    line-height: 1.5em;
-    font-weight: 700;
+  font-size: 1em;
+  line-height: 1.5em;
+  font-weight: 700;
 }
 
 .result {
+  margin-top: 1em;
+
+  font-size: 1.4em;
+  line-height: 2em;
+  font-weight: 700;
+}
+
+@media only screen and (min-width: 1024px) {
+  .formWrapper form {
+    margin: 64px 0 42px 0;
+  }
+
+  .result {
     margin-top: 2em;
 
     font-size: 1.5em;
-    line-height: 2em;
-    font-weight: 700;
+  }
 }
