@@ -33,12 +33,17 @@ const CurrencyExchange = ({ quotes }: { quotes: FormatedQuote[] }) => {
   const [showResetButton, setShowResetButton] = useState<boolean>(false);
 
   const debounceExchangedAmount = debounce(() => {
-    form.validateFields().then((values: FormFields): void => {
-      setResult('');
-      setShowResetButton(true);
-      const formData: FormData = getFormData(values);
-      formAction(formData);
-    });
+    form
+      .validateFields()
+      .then((values: FormFields): void => {
+        setResult('');
+        setShowResetButton(true);
+        const formData: FormData = getFormData(values);
+        formAction(formData);
+      })
+      .catch(() => {
+        setResult('');
+      });
   }, 2000);
 
   const onValuesChange = async () => {
@@ -75,15 +80,15 @@ const CurrencyExchange = ({ quotes }: { quotes: FormatedQuote[] }) => {
             {
               required: true,
               type: 'number',
-              min: 0,
+              min: 1,
               message: 'Please enter a positive number',
-              transform(value) {
+              transform: (value) => {
                 return Number(value);
               },
             },
           ]}
         >
-          <Input type="number" size="large" placeholder="0.0" min="0" step="0.1" style={{ width: '100%' }} />
+          <Input type="number" size="large" placeholder="0.0" step={0.1} style={{ width: '100%' }} />
         </Form.Item>
 
         <Form.Item<string>
@@ -154,8 +159,7 @@ const CurrencyExchange = ({ quotes }: { quotes: FormatedQuote[] }) => {
 
       {result && (
         <p aria-live="polite" role="result" className={styles.result}>
-          {' '}
-          {result}{' '}
+          {result}
         </p>
       )}
     </div>
