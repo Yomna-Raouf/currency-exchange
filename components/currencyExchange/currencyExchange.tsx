@@ -5,7 +5,6 @@ import { useFormState } from 'react-dom';
 
 import Input from 'antd/lib/input';
 import Button from 'antd/lib/button';
-import Select from 'antd/lib/select';
 import Form from 'antd/lib/form';
 import SwapOutlined from '@ant-design/icons/SwapOutlined';
 import debounce from 'lodash.debounce';
@@ -17,6 +16,7 @@ import type { FormFields, FormatedQuote } from '@/types';
 import { exchangeCurrency } from '@/app/actions';
 
 import styles from './currencyExchange.module.css';
+import CurrencySelect from '../currencySelect/currencySelect';
 
 const initialState = {
   result: '',
@@ -98,20 +98,12 @@ const CurrencyExchange = ({ quotes }: { quotes: FormatedQuote[] }) => {
           style={{ width: 300, height: 100, marginTop: 9, marginBottom: 0 }}
           rules={[{ required: true, message: 'Please select a currency' }]}
         >
-          <Select
-            size="large"
+          <CurrencySelect
             placeholder="Currency"
-            style={{ width: '100%' }}
-            onChange={(value) => {
-              setFromCurrency(value);
-            }}
-          >
-            {quotes.map(({ label, value }) => (
-              <Select.Option disabled={toCurrency === value} value={value} key={label}>
-                {label}
-              </Select.Option>
-            ))}
-          </Select>
+            onChange={setFromCurrency}
+            quotes={quotes}
+            conversionCurrency={toCurrency}
+          />
         </Form.Item>
 
         <div className={styles.swapButton}>
@@ -125,20 +117,12 @@ const CurrencyExchange = ({ quotes }: { quotes: FormatedQuote[] }) => {
           style={{ width: 300, height: 100, marginTop: 9, marginBottom: 0 }}
           rules={[{ required: true, message: 'Please select a currency' }]}
         >
-          <Select
-            size="large"
+          <CurrencySelect
             placeholder="Currency"
-            style={{ width: '100%' }}
-            onChange={(value) => {
-              setToCurrency(value);
-            }}
-          >
-            {quotes.map(({ label, value }) => (
-              <Select.Option disabled={fromCurrency === value} value={value} key={label}>
-                {label}
-              </Select.Option>
-            ))}
-          </Select>
+            onChange={setToCurrency}
+            quotes={quotes}
+            conversionCurrency={fromCurrency}
+          />
         </Form.Item>
       </Form>
 
