@@ -32,20 +32,17 @@ const CurrencyExchange = ({ quotes }: { quotes: FormatedQuote[] }) => {
   const [result, setResult] = useState<string>(state.result);
   const [showResetButton, setShowResetButton] = useState<boolean>(false);
 
-  const debounceExchangedAmount = (allValues: FormFields) =>
-    debounce(() => {
-      const formData: FormData = getFormData(allValues);
+  const debounceExchangedAmount = debounce(() => {
+    form.validateFields().then((values: FormFields): void => {
+      setResult('');
+      setShowResetButton(true);
+      const formData: FormData = getFormData(values);
       formAction(formData);
-    }, 2000);
+    });
+  }, 2000);
 
   const onValuesChange = async () => {
-    setTimeout(() => {
-      form.validateFields().then((values: FormFields): void => {
-        setResult('');
-        setShowResetButton(true);
-        debounceExchangedAmount(values)();
-      });
-    });
+    debounceExchangedAmount();
   };
 
   useEffect(() => {

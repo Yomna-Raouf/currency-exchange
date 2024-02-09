@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { IBM_Plex_Sans } from 'next/font/google';
 
-import { AntdRegistry } from '@ant-design/nextjs-registry';
+import StyleProviderLayout from '@/components/StyleProviderLayout/StyleProviderLayout';
 
 import './globals.css';
 
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning={true} lang="en">
       <body suppressHydrationWarning={true} className={IBMPlexSans.className}>
-        <AntdRegistry>{children}</AntdRegistry>
+        <StyleProviderLayout>{children}</StyleProviderLayout>
       </body>
     </html>
   );
