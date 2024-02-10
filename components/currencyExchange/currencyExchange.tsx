@@ -116,8 +116,9 @@ const CurrencyExchange = ({ quotes }: { quotes: FormatedQuote[] }) => {
           )}
         </Form.Item>
 
-        <div className={styles.swapButton}>
+        <div className={styles.swapButtonContainer}>
           <CustomButton
+            className="swapButton"
             ghost
             shape="circle"
             icon={<SwapOutlined />}
@@ -140,9 +141,11 @@ const CurrencyExchange = ({ quotes }: { quotes: FormatedQuote[] }) => {
       </Form>
 
       {showResetButton && (
-        <div className={styles.resetButton}>
-          <CustomButton onClick={resetForm} content="Reset" />
-        </div>
+        <CustomButton
+          className="resetButton"
+          onClick={resetForm}
+          content="Reset"
+        />
       )}
 
       {result && (

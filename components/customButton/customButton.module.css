@@ -1,0 +1,18 @@
+.swapButton {
+  border-color: rgb(var(--primary)) !important;
+}
+
+.resetButton {
+  width: 150px !important;
+  height: 40px !important;
+  border-radius: 4px !important;
+  border-color: rgb(var(--primary)) !important;
+  background-color: rgb(var(--primary)) !important;
+  color: #fff !important;
+}
+
+.resetButton > span {
+  font-size: 1em !important;
+  line-height: 1.5em !important;
+  font-weight: 700 !important;
+}
