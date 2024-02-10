@@ -11,7 +11,12 @@ export default async function Home() {
 
   return (
     <main style={{ position: 'relative' }}>
-      <Image src="/static/background.jpg" fill alt="currencies" className={styles.backgroundImage} />
+      <Image
+        src="/static/background.jpg"
+        fill
+        alt="currencies"
+        className={styles.backgroundImage}
+      />
 
       <section className={styles.currencyExchange}>
         <div className={styles.container}>

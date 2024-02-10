@@ -8,9 +8,15 @@ export async function exchangeCurrency(_: unknown, formData: FormData) {
   const toCurrency = formData.get('toCurrency');
 
   try {
-    const exchangeResult = await getExchangedCurrency(amount, fromCurrency, toCurrency);
+    const exchangeResult = await getExchangedCurrency(
+      amount,
+      fromCurrency,
+      toCurrency,
+    );
 
-    return { result: `${amount} ${fromCurrency} EQUALS ${exchangeResult} ${toCurrency}` };
+    return {
+      result: `${amount} ${fromCurrency} EQUALS ${exchangeResult} ${toCurrency}`,
+    };
   } catch (e) {
     return { result: 'Oooops! Failed to Calculate exchnge rate' };
   }
