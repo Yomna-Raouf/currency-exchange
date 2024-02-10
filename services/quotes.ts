@@ -17,7 +17,7 @@ export const getQuotes = async (): Promise<FormatedQuote[]> => {
   const formttedQuotes: FormatedQuote[] = quotes.map((quote) => ({
     value: quote,
     label: quote,
-    disabled: false
+    disabled: false,
   }));
 
   return formttedQuotes;

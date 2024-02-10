@@ -5,7 +5,10 @@ import StyleProviderLayout from '@/components/StyleProviderLayout/StyleProviderL
 
 import './globals.css';
 
-const IBMPlexSans = IBM_Plex_Sans({ weight: ['500', '600', '700'], subsets: ['latin'] });
+const IBMPlexSans = IBM_Plex_Sans({
+  weight: ['500', '600', '700'],
+  subsets: ['latin'],
+});
 
 export const metadata: Metadata = {
   title: 'Currency exchange',
